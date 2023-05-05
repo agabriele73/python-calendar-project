@@ -43,13 +43,16 @@ def main():
             ).fetchall()
         
 
+        rows_with_times = [] 
         for  row in rows:
-            lst = list(row)
-            print('----', lst)
+            row_list = list(row)
             starttime_obj = datetime.strptime(row[2], '%Y-%m-%d %H:%M:%S')
             endtime_obj = datetime.strptime(row[3], '%Y-%m-%d %H:%M:%S')
+            row_list[2] = starttime_obj.strftime('%H:%M')
+            row_list[3] = endtime_obj.strftime('%H:%M')
+            rows_with_times.append(tuple(row_list))
+        return render_template('main.html', rows=rows_with_times, form=form)
 
-        return render_template('main.html', rows=rows, form=form)
 
         
 
