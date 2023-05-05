@@ -8,8 +8,34 @@
 </head>
 <body>
     <h1>Calendar Working</h1>
-    {% for row in rows %}
-        <p>{{ row }}</p>
-    {% endfor %}
+    <form method="post" action="/">
+        {{ form.csrf_token }}
+        <p>Name: {{ form.name }}</p>
+        <p> Start: {{ form.start_date }} {{ form.start_time }}</p>
+        <p> End:  {{form.end_date }} {{ form.end_time }}</p>
+        <p>Description: {{ form.description }}</p>
+        <p>Private? {{ form.private }}</p>
+        <p>{{ form.submit }}</p>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+
+                <td>{{ row[1] }}</th>
+                <td>{{ row.starttime_obj }}</th>
+                <td>{{ row.endtime_obj }}</th>
+            </tr>
+    
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
